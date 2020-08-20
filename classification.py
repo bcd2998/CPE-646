@@ -34,5 +34,24 @@ gle = LabelEncoder()
 genre_labels = gle.fit_transform(books['genres'])
 genre_mappings = {index: label for index, label in 
                   enumerate(gle.classes_)}
-print(genre_mappings)
+ratings_labels = gle.fit_transform(books['book_rating'])
+#ratings_mappings = {index: label for index, label in enumerate(gle.classes_)}
+ratings_mappings = {index: label for index, label in enumerate(gle.classes_)}
+print(ratings_labels)
 
+title_labels = gle.fit_transform(books['book_title'])
+title_mappins = {index: label for index, label in enumerate(gle.classes_)}
+
+#print(genre_mappings)
+print(genre_labels)
+
+#Build
+fields = []
+for x in range(len(genre_labels)):
+    fields.append([genre_labels[x], ratings_labels[x]])
+
+#Train
+model = GaussianNB()
+model.fit(fields, title_labels)
+
+print(model.predict([[1863, 197]]))
