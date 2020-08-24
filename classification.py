@@ -9,28 +9,31 @@ books = pd.read_csv("clean_data.csv", encoding='utf-8',delimiter=',')#, nrows=10
 books.dataframeName = 'book_data.csv'
 books.drop(columns=['Unnamed: 0'], inplace=True)
 nRow, nCol = books.shape 
-print(f'There are {nRow} rows and {nCol} columns')
+#print(f'There are {nRow} rows and {nCol} columns')con
 # Debug print book info
-print(books.info())
+#print(books.info())
 
 # Data Preprocessing with LabelEncoder
-gle = LabelEncoder()
+gle_genre = LabelEncoder()
+gle_rating = LabelEncoder()
+gle_title = LabelEncoder()
 
 #   Genres
-genre_labels = gle.fit_transform(books['genres'])
+genre_labels = gle_genre.fit_transform(books['genres'])
 genre_mappings = {index: label for index, label in 
-                  enumerate(gle.classes_)}
+                  enumerate(gle_genre.classes_)}
+
 #   Ratings
-ratings_labels = gle.fit_transform(books['book_rating'])
-ratings_mappings = {index: label for index, label in enumerate(gle.classes_)}
+ratings_labels = gle_rating.fit_transform(books['book_rating'])
+ratings_mappings = {index: label for index, label in enumerate(gle_rating.classes_)}
 
 # Title to fit model
-title_labels = gle.fit_transform(books['book_title'])
-title_mappings = {index: label for index, label in enumerate(gle.classes_)}
+title_labels = gle_title.fit_transform(books['book_title'])
+title_mappings = {index: label for index, label in enumerate(gle_title.classes_)}
 
 # Print Encodings
-print(genre_labels)
-print(ratings_labels)
+# print(genre_labels)
+# print(ratings_labels)
 
 # Build
 fields = []
@@ -40,6 +43,81 @@ for x in range(len(genre_labels)):
 # Train Model - Gaussian Naive Bayes
 model = GaussianNB()
 model.fit(fields, title_labels)
+
+#Getting user input for the genre that they are looking for
+# print("Welcome to the Book Recommender System!")
+# fictionOrNon = input("Please enter Fiction if you are looking for Fiction genres or Nonfiction if you are looking for Nonfiction genres: ")
+# fictionOrNon.lower()
+# if fictionOrNon == 'fiction':
+#     fictionType = input("Pleae enter which of the following fiction genres you are looking for: Animal, Biblical, Bizarro, Christian, Fan, Fiction, Flash, Gay, Historical, Lds, Lesbian, Literary, Military, Realistic, Science, Speculative, Weird, Womens: ")
+#     fictionType.lower()
+#     if fictionType == 'animal':
+        
+#         user_genre = 'Animal Fiction|' + ''
+#     elif fictionType == 'biblical':
+        
+#         user_genre = 'Biblical Fiction|' + ''
+#     elif fictionType == 'bizarro':
+        
+#         user_genre = 'Bizaro Fiction|'
+#     elif fictionType == 'christian':
+        
+#         user_genre = 'Christian Fiction|' + ''
+#     elif fictionType == 'fan':
+        
+#         user_genre = 'Fan Fiction|' + ''
+#     elif fictionType == 'fiction':
+        
+#         user_genre = 'Fiction|' + ''
+#     elif fictionType == 'gay':
+        
+#         user_genre = 'Gay Fiction|' + ''
+#     elif fictionType == 'historical':
+        
+#         user_genre = 'Historical Fiction|' + ''
+#     elif fictionType == 'lds':
+        
+#         user_genre = 'Lds Fiction|' + ''
+#     elif fictionType == 'lesbian':
+        
+#         user_genre = 'Lesbian Fiction|' + ''
+#     elif fictionType == 'literary':
+
+#         user_genre = 'Literary Fiction|' + ''
+#     elif fictionType == 'military':
+        
+#         user_genre = 'Military Fiction|' + ''
+#     elif fictionType == 'realistic':
+        
+#         user_genre = 'Realistic Fiction|' +''
+#     elif fictionType == 'science':
+        
+#         user_genre = 'Science Fiction|' + ''
+#     elif fictionType == 'speculative':
+        
+#         user_genre = 'Speculative Fiction|' + ''
+#     elif fictionType == 'weird':
+        
+#         user_genre = 'Weird Fiction|' + ''
+#     elif fictionType == 'womens':
+        
+#         user_genre = 'Womens Fiction' + ''
+#     else:
+#         print("You did not enter a valid Fiction Type")
+# elif fictionOrNon == 'nonfiction':
+#     nonType = input("Please enter Christian if you are looking for Christian Nonfiction and Nonfiction if you are looking for another kind of Nonfiction: ")
+#     nonType.lower()
+#     if nonType == 'christian':
+        
+#         user_genre = 'Christian Nonfiction|' + ''
+#     elif nonType == 'nonfiction':
+        
+#         user_genre = 'Nonfiction|' + ''
+#     else:
+#         print("You did not enter a valid NonFiction Type")
+# else:
+#     print("You did not enter a valid input!")
+#For loop getting numeric value
 
 # Predict this item/ Multiple Predictions
 #### Intention for some UI to determine genre and 
@@ -52,7 +130,8 @@ forprint = []
 # Predict for each unique rating
 for x in runique:
     if ratings_mappings[x] >= 4.6:
-        print(f'encode{x} = {ratings_mappings[x]}')
+        # print(f'encode{x} = {ratings_mappings[x]}')
+        f'encode{x} = {ratings_mappings[x]}'
         prediction = model.predict([[input_genre, x]])
         predictions[x] = prediction
 
