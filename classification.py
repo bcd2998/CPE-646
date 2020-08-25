@@ -69,18 +69,21 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         animalType = input("Please enter which of the above Animal Fiction types you are looking for: ")
+        animalType = animalType.lower()
         user_genre = 'Animal Fiction|' + animalType
 
     elif fictionType == 'biblical':
         print("")
         print("Biblical Fiction only offers Biblical Fiction History")
         biblicalType = 'History'
+        biblicalType = biblicalType.lower()
         user_genre = 'Biblical Fiction|' + biblicalType
 
     elif fictionType == 'bizarro':
         print("")
         print("Bizarro Fiction only offers Bizarro Fiction Horror")
         bizarroType = 'Horror'
+        bizarroType = bizarroType.lower()
         user_genre = 'Bizaro Fiction|' + bizarroType
 
     elif fictionType == 'christian':
@@ -94,6 +97,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         christainFictionType = input("Please enter which of the above Christian Fiction types you are looking for: ")
+        christainFictionType = christainFictionType.lower()
         user_genre = 'Christian Fiction|' + christainFictionType
 
     elif fictionType == 'fan':
@@ -104,6 +108,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         fanType = input("Please enter which of the above Fan Fiction Types you are looking for: ")
+        fanType = fanType.lower()
         user_genre = 'Fan Fiction|' + fanType
 
     elif fictionType == 'fiction':
@@ -128,6 +133,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         fictType = input("Please enter which of the above Fiction Types you are looking for: ")
+        fictType = fictType.lower()
         user_genre = 'Fiction|' + fictType
 
     elif fictionType == 'gay':
@@ -138,6 +144,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         gayType = input("Please enter which of the above Gay Fiction Types you are looking for: ")
+        gayType = gayType.lower()
         user_genre = 'Gay Fiction|' + gayType
 
     elif fictionType == 'historical':
@@ -151,6 +158,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         historicalType = input("Please enter which of the above Historical Fiction Types you are looking for: ")
+        historicalType = historicalType.lower()
         user_genre = 'Historical Fiction|' + historicalType
 
     elif fictionType == 'lds':
@@ -161,6 +169,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         ldsType = input("Please enter which of the above Lds Fiction Types you are looking for: ")
+        ldsType = ldsType.lower()
         user_genre = 'Lds Fiction|' + ldsType
 
     elif fictionType == 'lesbian':
@@ -171,6 +180,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         lesbianType = input("Please enter which of the above Lesbian Fiction Types you are looking for: ")
+        lesbianType = lesbianType.lower()
         user_genre = 'Lesbian Fiction|' + lesbianType
 
     elif fictionType == 'literary':
@@ -182,6 +192,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         literaryType = input("Please enter which of the above Literary Types you are looking for: ")
+        literaryType = literaryType.lower()
         user_genre = 'Literary Fiction|' + literaryType
 
     elif fictionType == 'military':
@@ -193,6 +204,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         militaryType = input("Please enter which of the above Military Fiction Types you are looking for: ")
+        militaryType = militaryType.lower()
         user_genre = 'Military Fiction|' + militaryType
 
     elif fictionType == 'realistic':
@@ -205,6 +217,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         realisticType = input("Please enter which of the above Realistic Fiction Types you are looking for: ")
+        realisticType = realisticType.lower()
         user_genre = 'Realistic Fiction|' + realisticType
 
     elif fictionType == 'science':
@@ -247,6 +260,7 @@ if fictionOrNon == 'fiction':
             sType = input("Please enter which of the above Science Fiction types you are looking for: ")
         else:
             print("You did not select a valid Science Fiction Genre")
+        sType = sType.lower()
         user_genre = 'Science Fiction|' + sType
 
     elif fictionType == 'speculative':
@@ -257,6 +271,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         speculativeType = input("Please enter which of the above Speculative Fiction types you are looking for: ")
+        speculativeType = speculativeType.lower()
         user_genre = 'Speculative Fiction|' + speculativeType
 
     elif fictionType == 'weird': 
@@ -267,6 +282,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         weirdType = input("Please enter which of the aabove Weird Fiction types you are looking for: ")
+        weirdType = weirdType.lower()
         user_genre = 'Weird Fiction|' + weirdType
 
     elif fictionType == 'womens':
@@ -278,6 +294,7 @@ if fictionOrNon == 'fiction':
             print(genre)
         print("")
         womensType = input("Please enter which of the above Womens Fiction types you are looking for: ")
+        womensType = womensType.lower()
         user_genre = 'Womens Fiction|' + womensType
 
     else:
@@ -297,6 +314,7 @@ elif fictionOrNon == 'nonfiction':
             print(genre)
         print("")
         christianNon = input("Please enter which of the above Christian Nonfiction types you are looking for: ")
+        christianNon = christianNon.lower()
         user_genre = 'Christian Nonfiction|' + christianNon
         
     elif nonType == 'nonfiction':
@@ -318,6 +336,7 @@ elif fictionOrNon == 'nonfiction':
             print(genre)
         print("")    
         non = input("Please enter which of the above Nonfiction types you are looking for: ")
+        non = non.lower()
         user_genre = 'Nonfiction|' + non
     else:
         print("You did not enter a valid NonFiction Type")
@@ -325,7 +344,7 @@ else:
     print("You did not enter a valid input!")
 #For loop getting numeric value
 for keys in genre_mappings:
-    if user_genre == genre_mappings[keys]:
+    if user_genre.lower() == genre_mappings[keys].lower():
         input_genre = keys
         break
 print("")
@@ -466,3 +485,7 @@ from PIL import Image
 url = image_url
 image = Image.open(requests.get(url, stream=True).raw)
 image.show()
+
+
+
+    
