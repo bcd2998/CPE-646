@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.naive_bayes import GaussianNB
 
 # Get Cleaned Data CSV
-books = pd.read_csv("clean_data.csv", encoding='utf-8',delimiter=',')#, nrows=1000)
+books = pd.read_csv("clean_data.csv", encoding='utf-8',delimiter=',')
 books.dataframeName = 'book_data.csv'
 books.drop(columns=['Unnamed: 0'], inplace=True)
 nRow, nCol = books.shape 
@@ -427,7 +427,6 @@ def print_books(forprint):
         print(p)
 
 ## Choose Book
-#def choose_book(predictions, rating):
 def choose_book(input_genre,rating_start,rating_end):
     """
         Recursive function checks titles with user 
@@ -437,6 +436,9 @@ def choose_book(input_genre,rating_start,rating_end):
     """
     #Print Predictions as a book list
     final_prediction = []
+    print(f'Calculating predictions based on selected Genre {genre_mappings[input_genre]}...\n')
+    
+    # Get Predictions and Sort
     predictions = predict_books(input_genre,rating_start,rating_end)
     sorted_predictions = sorted(predictions.items(), key=lambda x:float(x[1][2]), reverse=True)
     predict = {}
@@ -444,6 +446,8 @@ def choose_book(input_genre,rating_start,rating_end):
     for i in sorted_predictions:
         predict[count] = i[1]
         count += 1
+    
+    # Print Book Predictions
     forprint = create_printable_object(predict)
     print_books(forprint)
     print('\n')
@@ -474,8 +478,6 @@ def choose_book(input_genre,rating_start,rating_end):
     return final_prediction
 
 ###### Predict this item/ Multiple Predictions######
-# Specify Genre - Intention to get genre from user input
-# input_genre = 200
 
 # Inquire about which title reader would like to see
 book_select = choose_book(input_genre,4.6,5.1)
@@ -487,12 +489,9 @@ print(f'\nDescription of {book_select[0]} by {book_select[1]}: \n\n{description}
 image_url = books.loc[title_index.values,'image_url'].values[0]
 print(image_url)
 
+# Display Image Provided by URL
 import requests
 from PIL import Image
 url = image_url
 image = Image.open(requests.get(url, stream=True).raw)
 image.show()
-
-
-
-    
