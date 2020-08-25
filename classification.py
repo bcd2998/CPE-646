@@ -136,9 +136,16 @@ if fictionOrNon == 'fiction':
         fictType = fictType.lower()
         user_genre = 'Fiction|' + fictType
 
+    elif fictionType == 'flash':
+        print("")
+        print("Flash Fiction only has Short Stories available")
+        flashType = 'Short Stories'
+        flashType = flashType.lower()
+        user_genre = 'Flash Fiction|' + flashType
+
     elif fictionType == 'gay':
         print("")
-        print("The following are the types of Gay Fiction offered:")
+        print("The following are the types of Gay Fiction offered: ")
         Gay_Genres = ['Lgbt', 'Romance']
         for genre in Gay_Genres:
             print(genre)
