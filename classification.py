@@ -458,8 +458,11 @@ book_select = choose_book(input_genre,4.6,5.1)
 title_index = books[books['book_title'] == book_select[0]].index
 description = books.loc[title_index.values,'book_desc'].values[0]
 print(f'\nDescription of {book_select[0]} by {book_select[1]}: \n\n{description}\n')
+image_url = books.loc[title_index.values,'image_url'].values[0]
+print(image_url)
 
-
-
-
-    
+import requests
+from PIL import Image
+url = image_url
+image = Image.open(requests.get(url, stream=True).raw)
+image.show()
