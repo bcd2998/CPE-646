@@ -288,7 +288,7 @@ if fictionOrNon == 'fiction':
         for genre in Weird_Genres:
             print(genre)
         print("")
-        weirdType = input("Please enter which of the aabove Weird Fiction types you are looking for: ")
+        weirdType = input("Please enter which of the above Weird Fiction types you are looking for: ")
         weirdType = weirdType.lower()
         user_genre = 'Weird Fiction|' + weirdType
 
