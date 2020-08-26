@@ -9,9 +9,6 @@ books = pd.read_csv("clean_data.csv", encoding='utf-8',delimiter=',')
 books.dataframeName = 'book_data.csv'
 books.drop(columns=['Unnamed: 0'], inplace=True)
 nRow, nCol = books.shape 
-#print(f'There are {nRow} rows and {nCol} columns')con
-# Debug print book info
-#print(books.info())
 
 # Data Preprocessing with LabelEncoder
 gle_genre = LabelEncoder()
@@ -30,10 +27,6 @@ ratings_mappings = {index: label for index, label in enumerate(gle_rating.classe
 # Title to fit model
 title_labels = gle_title.fit_transform(books['book_title'])
 title_mappings = {index: label for index, label in enumerate(gle_title.classes_)}
-
-# Print Encodings
-# print(genre_labels)
-# print(ratings_labels)
 
 # Build
 fields = []
@@ -372,7 +365,6 @@ def predict_books(input_genre,rating_start,rating_end):
     # Predict for each unique rating
     for x in runique:
         if ratings_mappings[x] >= rating_start and ratings_mappings[x] < rating_end:
-            # print(f'encode{x} = {ratings_mappings[x]}')
             f'encode{x} = {ratings_mappings[x]}'
             prediction = model.predict([[input_genre, x]])
             predictions[x] = prediction
