@@ -4,7 +4,7 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 
 # Accessing Dataset
-nba = pd.read_csv("book_data.csv",delimiter=',')#, nrows=1000)
+nba = pd.read_csv("book_data.csv",delimiter=',')
 
 # Drop unwanted columns
 books = nba.drop(columns = ['book_edition','book_format','book_isbn','book_pages',
@@ -19,7 +19,6 @@ for label, content in books.items():
         #print(f'label: {label}')
         c = content.str.split('|')     
         for i in range(nRow):
-            #print(f'content: {content[i]}')
             
             zero = ''
             one = ''
